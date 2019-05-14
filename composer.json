@@ -1,0 +1,25 @@
+{
+    "name": "atomsit/analytics",
+    "description": "",
+    "authors": [
+        {
+            "name": "ATOMSit",
+            "email": "contact@atomsit.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Analytics\\Providers\\AnalyticsServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Analytics\\": ""
+        }
+    }
+}
