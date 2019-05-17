@@ -2,9 +2,12 @@
 
 namespace Modules\Analytics\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Spatie\Analytics\Period;
+use Analytics;
 
 class AnalyticsController extends Controller
 {
@@ -14,6 +17,9 @@ class AnalyticsController extends Controller
      */
     public function index()
     {
+
+        return view("analytics::application.google");
+
         return view('analytics::index');
     }
 
