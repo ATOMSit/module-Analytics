@@ -24,6 +24,14 @@ return [
                 'title' => "Navigateurs favoris de vos visiteurs",
                 'others' => "Autres"
             ]
-        ]
+        ],
+        'user_types' => [
+            'views' => [
+                'title' => "Types des visiteurs",
+                'others' => "Autres",
+                'new_visitor' => "Nouveaux visiteurs",
+                'returning_visitor' => "Visiteurs de retour"
+            ]
+        ],
     ]
 ];
