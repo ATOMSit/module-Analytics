@@ -17,7 +17,6 @@ class AnalyticsController extends Controller
      */
     public function index()
     {
-
         return view("analytics::application.google");
 
         return view('analytics::index');

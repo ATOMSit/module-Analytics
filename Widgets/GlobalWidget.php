@@ -4,6 +4,7 @@ namespace Modules\Analytics\Widgets;
 
 use Arrilot\Widgets\AbstractWidget;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Spatie\Analytics\Period;
 use Analytics;
 
@@ -20,12 +21,12 @@ class GlobalWidget extends AbstractWidget
 
 
     /**
-     *
+     * Returns the list of visitors and the number of page views.
      *
      * @param Period $period
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
-    protected function visitorsAndPageViews(Period $period)
+    protected function visitorsAndPageViews(Period $period): Collection
     {
         $response = Analytics::performQuery(
             $period,
@@ -42,12 +43,12 @@ class GlobalWidget extends AbstractWidget
     }
 
     /**
-     *
+     * Returns the average time spend on the website for a visitor.
      *
      * @param Period $period
-     * @return mixed
+     * @return float
      */
-    protected function avgSessionDuration(Period $period)
+    protected function avgSessionDuration(Period $period): float
     {
         $response = Analytics::performQuery(
             $period,
@@ -59,7 +60,13 @@ class GlobalWidget extends AbstractWidget
         return number_format((float)$time[0], 2, '.', '');
     }
 
-    protected function bounceRate(Period $period)
+    /**
+     * Returns the rebound rate of the website.
+     *
+     * @param Period $period
+     * @return float
+     */
+    protected function bounceRate(Period $period): float
     {
         $response = Analytics::performQuery(
             $period,
@@ -74,7 +81,13 @@ class GlobalWidget extends AbstractWidget
         return number_format((float)$rate[0], 2, '.', '');
     }
 
-    protected function directRate(Period $period)
+    /**
+     * Returns the percentage of direct visitor to the site.
+     *
+     * @param Period $period
+     * @return float
+     */
+    protected function directRate(Period $period): float
     {
         $response = Analytics::performQuery(
             $period,
@@ -98,12 +111,18 @@ class GlobalWidget extends AbstractWidget
         return number_format((float)($direct / $total) * 100, 2, '.', '');
     }
 
-    protected function pageViews(Period $period)
+    /**
+     * Returns the number of impressions for the website.
+     *
+     * @param Period $period
+     * @return int
+     */
+    protected function pageViews(Period $period): int
     {
         $response = Analytics::performQuery(
             $period,
             'ga:pageviews'
-            );
+        );
         return (int)$response['rows'][0][0];
     }
 

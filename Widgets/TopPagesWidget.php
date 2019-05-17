@@ -20,24 +20,36 @@ class TopPagesWidget extends AbstractWidget
     ];
 
     /**
+     * Returns the most viewed pages with important information.
+     *
+     * @param Period $period
+     * @param int $maxResults
+     * @return Collection
+     */
+    protected function topPagesWithInformations(Period $period, int $maxResults = 10): Collection
+    {
+        $response = Analytics::performQuery(
+            $period,
+            'ga:users,ga:bounceRate,ga:avgTimeOnPage,ga:newUsers',
+            [
+                'dimensions' => 'ga:pageTitle,ga:pagePath',
+                'sort' => '-ga:users',
+                'max-results' => $maxResults
+            ]
+        );
+        return Collection::make($response['rows']);
+    }
+
+    /**
      * Treat this method as a controller action.
      * Return view() or other content to display.
      */
     public function run()
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
-        $results = Analytics::performQuery(
-            $period,
-            'ga:users,ga:bounceRate,ga:avgTimeOnPage,ga:newUsers',
-            [
-                'dimensions' => 'ga:pageTitle,ga:pagePath',
-                'sort' => '-ga:users',
-                'max-results' => 10
-            ]
-        );
-
+        $result = $this->topPagesWithInformations($period, 10);
         return view('analytics::application.google.widgets.top_pages_widget', [
-            'top_pages' => $results['rows'],
+            'top_pages' => $result,
             'config' => $this->config,
         ]);
     }

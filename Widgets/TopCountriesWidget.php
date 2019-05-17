@@ -21,7 +21,14 @@ class TopCountriesWidget extends AbstractWidget
 
     ];
 
-    protected function fetchTopBrowsers(Period $period, int $maxResults = 10): Collection
+    /**
+     * Returns the list of countries of origin of visitors
+     *
+     * @param Period $period
+     * @param int $maxResults
+     * @return Collection
+     */
+    protected function fetchTopCountries(Period $period, int $maxResults = 10): Collection
     {
         $response = Analytics::performQuery(
             $period,
@@ -31,28 +38,33 @@ class TopCountriesWidget extends AbstractWidget
                 'sort' => '-ga:sessions',
             ]
         );
-
-        $topBrowsers = collect($response['rows'] ?? [])->map(function (array $browserRow) {
+        $topCountries = collect($response['rows'] ?? [])->map(function (array $browserRow) {
             return [
                 'name' => $browserRow[0],
                 'iso' => (string)$browserRow[1],
                 'sessions' => (int)$browserRow[2],
             ];
         });
-        if ($topBrowsers->count() <= $maxResults) {
-            return $topBrowsers;
+        if ($topCountries->count() <= $maxResults) {
+            return $topCountries;
         }
-
-        return $this->summarizeTopBrowsers($topBrowsers, $maxResults);
+        return $this->summarizeTopCountries($topCountries, $maxResults);
     }
 
-    protected function summarizeTopBrowsers(Collection $topBrowsers, int $maxResults): Collection
+    /**
+     * Add "Other" to the list if too much result.
+     *
+     * @param Collection $topCountries
+     * @param int $maxResults
+     * @return Collection
+     */
+    protected function summarizeTopCountries(Collection $topCountries, int $maxResults): Collection
     {
-        return $topBrowsers
+        return $topCountries
             ->take($maxResults - 1)
             ->push([
                 'name' => 'Others',
-                'sessions' => $topBrowsers->splice($maxResults - 1)->sum('sessions'),
+                'sessions' => $topCountries->splice($maxResults - 1)->sum('sessions'),
                 'iso' => null
             ]);
     }
@@ -64,8 +76,7 @@ class TopCountriesWidget extends AbstractWidget
     public function run()
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
-        $results = $this->fetchTopBrowsers($period, 5);
-
+        $results = $this->fetchTopCountries($period, 5);
         return view('analytics::application.google.widgets.top_countries_widget', [
             'top_countries' => $results,
             'config' => $this->config,
