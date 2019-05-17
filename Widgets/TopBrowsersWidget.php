@@ -25,8 +25,7 @@ class TopBrowsersWidget extends AbstractWidget
     public function run()
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
-        $results = Analytics::fetchTopBrowsers($period,3);
-
+        $results = Analytics::fetchTopBrowsers($period, 3);
         return view('analytics::application.google.widgets.top_browsers_widget', [
             'top_browers' => $results,
             'config' => $this->config,
