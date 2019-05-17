@@ -2,7 +2,7 @@
 
 return [
     'widgets' => [
-        'global_widget' => [
+        'global' => [
             'views' => [
                 'title' => "Informations primordiales",
                 'bounce_rate' => "Taux de rebond",
@@ -16,6 +16,12 @@ return [
         'top_socials_medias' => [
             'views' => [
                 'title' => "Réseaux sociaux apportant le plus de traffic",
+                'others' => "Autres"
+            ]
+        ],
+        'top_browsers' => [
+            'views' => [
+                'title' => "Navigateurs favoris de vos visiteurs",
                 'others' => "Autres"
             ]
         ]

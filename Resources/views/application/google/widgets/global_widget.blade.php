@@ -14,7 +14,7 @@
         var a = {
             labels: date,
             datasets: [{
-                label: "@lang('analytics::google_translation.widgets.global_widget.views.visitors')",
+                label: "@lang('analytics::google_translation.widgets.global.views.visitors')",
                 fill: !0,
                 backgroundColor: "rgba(168, 183, 255, 0.76)",
                 borderColor: "#a8b7ff",
@@ -26,7 +26,7 @@
                 pointHoverBorderColor: "#000000",
                 data: visitors
             }, {
-                label: "@lang('analytics::google_translation.widgets.global_widget.views.number_printing')",
+                label: "@lang('analytics::google_translation.widgets.global.views.number_printing')",
                 fill: !0,
                 backgroundColor: "rgba(93, 120, 255, 0.76)",
                 borderColor: "#5d78ff",
@@ -98,7 +98,7 @@
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                @lang('analytics::google_translation.widgets.global_widget.views.title')
+                @lang('analytics::google_translation.widgets.global.views.title')
             </h3>
         </div>
     </div>
@@ -108,7 +108,7 @@
                 <div class="kt-widget12__item">
                     <div class="kt-widget12__info">
                         <span class="kt-widget12__desc">
-                            @lang('analytics::google_translation.widgets.global_widget.views.bounce_rate')
+                            @lang('analytics::google_translation.widgets.global.views.bounce_rate')
                         </span>
                         <span class="kt-widget12__value">
                             {{$bounce_rate}}%
@@ -117,17 +117,17 @@
 
                     <div class="kt-widget12__info">
                         <span class="kt-widget12__desc">
-                            @lang('analytics::google_translation.widgets.global_widget.views.avg_time')
+                            @lang('analytics::google_translation.widgets.global.views.avg_time')
                         </span>
                         <span class="kt-widget12__value">
-                            {{$avgSessionDuration}} @lang('analytics::google_translation.widgets.global_widget.views.minute')
+                            {{$avgSessionDuration}} @lang('analytics::google_translation.widgets.global.views.minute')
                         </span>
                     </div>
                 </div>
                 <div class="kt-widget12__item">
                     <div class="kt-widget12__info">
                         <span class="kt-widget12__desc">
-                            @lang('analytics::google_translation.widgets.global_widget.views.number_printing')
+                            @lang('analytics::google_translation.widgets.global.views.number_printing')
                         </span>
                         <span class="kt-widget12__value">
                             {{$page_views}}
@@ -135,7 +135,7 @@
                     </div>
                     <div class="kt-widget12__info">
                         <span class="kt-widget12__desc">
-                            @lang('analytics::google_translation.widgets.global_widget.views.direct_users')
+                            @lang('analytics::google_translation.widgets.global.views.direct_users')
                         </span>
                         <div class="kt-widget12__progress">
                             <div class="progress kt-progress--sm">

@@ -15,7 +15,7 @@
                             $social = strtolower($top_social['name']);
                         @endphp
                         @if($social === 'others')
-                            <img src="{{asset("application/media/browsers/$social.png")}}" alt="">
+                            <img src="{{asset("application/media/browers/$social.png")}}" alt="">
                         @else
                             <img src="{{asset("application/media/socials/$social.png")}}" alt="">
                         @endif
