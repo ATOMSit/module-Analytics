@@ -21,6 +21,13 @@ class TopCountriesWidget extends AbstractWidget
 
     ];
 
+    /**
+     * Returns the list of countries of origin of visitors
+     *
+     * @param Period $period
+     * @param int $maxResults
+     * @return Collection
+     */
     protected function fetchTopCountries(Period $period, int $maxResults = 10): Collection
     {
         $response = Analytics::performQuery(
@@ -44,6 +51,13 @@ class TopCountriesWidget extends AbstractWidget
         return $this->summarizeTopCountries($topCountries, $maxResults);
     }
 
+    /**
+     * Add "Other" to the list if too much result.
+     *
+     * @param Collection $topCountries
+     * @param int $maxResults
+     * @return Collection
+     */
     protected function summarizeTopCountries(Collection $topCountries, int $maxResults): Collection
     {
         return $topCountries
@@ -63,7 +77,6 @@ class TopCountriesWidget extends AbstractWidget
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
         $results = $this->fetchTopCountries($period, 5);
-
         return view('analytics::application.google.widgets.top_countries_widget', [
             'top_countries' => $results,
             'config' => $this->config,

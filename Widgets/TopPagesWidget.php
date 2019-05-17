@@ -20,13 +20,13 @@ class TopPagesWidget extends AbstractWidget
     ];
 
     /**
-     * Returns the most viewed pages with important information
+     * Returns the most viewed pages with important information.
      *
      * @param Period $period
      * @param int $maxResults
-     * @return mixed
+     * @return Collection
      */
-    protected function topPagesWithInformations(Period $period, int $maxResults = 10)
+    protected function topPagesWithInformations(Period $period, int $maxResults = 10): Collection
     {
         $response = Analytics::performQuery(
             $period,
@@ -37,7 +37,7 @@ class TopPagesWidget extends AbstractWidget
                 'max-results' => $maxResults
             ]
         );
-        return $response['rows'];
+        return Collection::make($response['rows']);
     }
 
     /**

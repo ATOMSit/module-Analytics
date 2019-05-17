@@ -6,6 +6,7 @@ use Arrilot\Widgets\AbstractWidget;
 use Carbon\Carbon;
 use Spatie\Analytics\Period;
 use Analytics;
+use Illuminate\Support\Collection;
 
 class UserTypesWidget extends AbstractWidget
 {
@@ -19,31 +20,41 @@ class UserTypesWidget extends AbstractWidget
     ];
 
     /**
-     * Treat this method as a controller action.
-     * Return view() or other content to display.
+     * Returns the type of users visiting the website.
+     *
+     * @param Period $period
+     * @return Collection
      */
-    public function run()
+    protected function userTypes(Period $period): Collection
     {
-        $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
-        $results = Analytics::performQuery(
+        $responses = Analytics::performQuery(
             $period,
             'ga:sessions',
             [
                 'dimensions' => 'ga:userType',
             ]
         );
-
-        $response = array('new_visitor' => array(), 'returning_visitor' => array());
-        foreach ($results as $result) {
-            if ($result[0] === 'New Visitor') {
-                $response['new_visitor'] = $result[1];
-            } elseif ($result[0] === 'Returning Visitor') {
-                $response['returning_visitor'] = $result[1];
+        $results = array('new_visitor' => array(), 'returning_visitor' => array());
+        foreach ($responses as $respons) {
+            if ($respons[0] === 'New Visitor') {
+                $results['new_visitor'] = $respons[1];
+            } elseif ($respons[0] === 'Returning Visitor') {
+                $results['returning_visitor'] = $respons[1];
             }
         }
+        return Collection::make($results);
+    }
 
+    /**
+     * Treat this method as a controller action.
+     * Return view() or other content to display.
+     */
+    public function run()
+    {
+        $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
+        $result = $this->userTypes($period);
         return view('analytics::application.google.widgets.user_types_widget', [
-            'userType' => $response,
+            'userType' => $result,
             'config' => $this->config,
         ]);
     }
