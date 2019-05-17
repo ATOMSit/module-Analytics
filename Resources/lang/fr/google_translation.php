@@ -41,5 +41,11 @@ return [
                 'tablet' => "Tablettes"
             ]
         ],
+        'top_countries' => [
+            'views' => [
+                'title' => "Origine des visiteurs",
+                'others' => "Autres"
+            ]
+        ],
     ]
 ];
