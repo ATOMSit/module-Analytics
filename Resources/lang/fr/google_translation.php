@@ -47,5 +47,15 @@ return [
                 'others' => "Autres"
             ]
         ],
+        'top_pages' => [
+            'views' => [
+                'title' => "Informations complémentaires",
+                'page' => "Page",
+                'visitors' => "Visiteurs",
+                'news_visitors' => "Nouveaux visiteurs",
+                'avg_time' => "Temps moyen d'une visite",
+                'bounce_rate' => "Taux de rebond",
+            ]
+        ]
     ]
 ];
