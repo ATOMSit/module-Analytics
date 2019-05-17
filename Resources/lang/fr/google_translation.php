@@ -12,6 +12,12 @@ return [
                 'direct_users' => "Visiteurs depuis un moteur de recherche",
                 'visitors' => "Visiteurs"
             ]
+        ],
+        'top_socials_medias' => [
+            'views' => [
+                'title' => "Réseaux sociaux apportant le plus de traffic",
+                'others' => "Autres"
+            ]
         ]
     ]
 ];

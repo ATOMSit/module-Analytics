@@ -2,7 +2,7 @@
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Top des réseaux sociaux
+                @lang('analytics::google_translation.widgets.top_socials_medias.views.title')
             </h3>
         </div>
     </div>
@@ -14,11 +14,19 @@
                         @php
                             $social = strtolower($top_social['name']);
                         @endphp
-                        <img src="{{asset("application/media/socials/$social.png")}}" alt="">
+                        @if($social === 'others')
+                            <img src="{{asset("application/media/browsers/$social.png")}}" alt="">
+                        @else
+                            <img src="{{asset("application/media/socials/$social.png")}}" alt="">
+                        @endif
                     </div>
                     <div class="kt-widget4__info">
                         <a href="#" class="kt-widget4__title">
-                            {{$top_social['name']}}
+                            @if($social === 'others')
+                                @lang('analytics::google_translation.widgets.top_socials_medias.views.others')
+                            @else
+                                {{$top_social['name']}}
+                            @endif
                         </a>
                     </div>
                     <span class="kt-widget4__number kt-font-brand">
