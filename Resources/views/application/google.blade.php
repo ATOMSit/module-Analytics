@@ -1,7 +1,7 @@
 @extends('application.layouts.app')
 
 @section('title')
-    Analytics
+    @lang('analytics::breadcrumb_translation.analytics.admin.index')
 @endsection
 
 @section('breadcrumbs')
@@ -17,6 +17,7 @@
 @endpush
 
 @section('content')
+    @widget('AdvicesWidget', ['plugin' => 'analytics'])
     <div class="row">
         <div class="col-xl-8">
             @widget('Modules\Analytics\Widgets\GlobalWidget')

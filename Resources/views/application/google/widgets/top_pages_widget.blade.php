@@ -2,7 +2,7 @@
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Bordered Table
+                @lang('analytics::google_translation.widgets.top_pages.views.title')
             </h3>
         </div>
     </div>
@@ -13,19 +13,19 @@
                     <thead>
                     <tr>
                         <th>
-                            Page
+                            @lang('analytics::google_translation.widgets.top_pages.views.page')
                         </th>
                         <th>
-                            Visiteurs
+                            @lang('analytics::google_translation.widgets.top_pages.views.visitors')
                         </th>
                         <th>
-                            Nouveaux visiteurs
+                            @lang('analytics::google_translation.widgets.top_pages.views.news_visitors')
                         </th>
                         <th>
-                            Temps moyen sur la page
+                            @lang('analytics::google_translation.widgets.top_pages.views.avg_time')
                         </th>
                         <th>
-                            Taux de rebond
+                            @lang('analytics::google_translation.widgets.top_pages.views.bounce_rate')
                         </th>
                     </tr>
                     </thead>

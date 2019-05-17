@@ -2,7 +2,7 @@
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Origine de vos visiteurs
+                @lang('analytics::google_translation.widgets.top_countries.views.title')
             </h3>
         </div>
     </div>
@@ -14,11 +14,19 @@
                         @php
                             $iso = strtolower($top_country['iso']);
                         @endphp
-                        <span class="flag-icon flag-icon-{{$iso}}" style="font-size: 25px"></span>
+                        @if($iso == null)
+                            <img src="{{asset("application/media/browers/others.png")}}" alt="">
+                        @else
+                            <span class="flag-icon flag-icon-{{$iso}}" style="font-size: 25px"></span>
+                        @endif
                     </div>
                     <div class="kt-widget4__info">
                         <a href="#" class="kt-widget4__title">
-                            {{$top_country['name']}}
+                            @if($iso == null)
+                                @lang('analytics::google_translation.widgets.top_countries.views.others')
+                            @else
+                                {{$top_country['name']}}
+                            @endif
                         </a>
                     </div>
                     <span class="kt-widget4__number kt-font-brand">

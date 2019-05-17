@@ -1,26 +1,20 @@
 @push('scripts')
     <script src="{{asset('application/vendors/custom/chartjs/Chart.js')}}"></script>
-
     <script>
         var ctx = document.getElementById("canvas").getContext('2d');
-
         var my_json = @json($stats);
-
         var date = [];
         var visitors = [];
         var pageViews = [];
-
         for (var i in my_json) {
             date.push(my_json[i]['date']);
             visitors.push(my_json[i]['visitors']);
             pageViews.push(my_json[i]['pageViews'])
         }
-
-
         var a = {
             labels: date,
             datasets: [{
-                label: "Visiteurs",
+                label: "@lang('analytics::google_translation.widgets.global.views.visitors')",
                 fill: !0,
                 backgroundColor: "rgba(168, 183, 255, 0.76)",
                 borderColor: "#a8b7ff",
@@ -32,7 +26,7 @@
                 pointHoverBorderColor: "#000000",
                 data: visitors
             }, {
-                label: "Pages vue",
+                label: "@lang('analytics::google_translation.widgets.global.views.number_printing')",
                 fill: !0,
                 backgroundColor: "rgba(93, 120, 255, 0.76)",
                 borderColor: "#5d78ff",
@@ -100,13 +94,11 @@
     </script>
 @endpush
 
-
-
 <div class="kt-portlet kt-portlet--height-fluid">
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Order Statistics
+                @lang('analytics::google_translation.widgets.global.views.title')
             </h3>
         </div>
     </div>
@@ -116,7 +108,7 @@
                 <div class="kt-widget12__item">
                     <div class="kt-widget12__info">
                         <span class="kt-widget12__desc">
-                            Taux de rebond
+                            @lang('analytics::google_translation.widgets.global.views.bounce_rate')
                         </span>
                         <span class="kt-widget12__value">
                             {{$bounce_rate}}%
@@ -125,17 +117,17 @@
 
                     <div class="kt-widget12__info">
                         <span class="kt-widget12__desc">
-                            Temps moyen sur votre site
+                            @lang('analytics::google_translation.widgets.global.views.avg_time')
                         </span>
                         <span class="kt-widget12__value">
-                            {{$avgSessionDuration}} minutes
+                            {{$avgSessionDuration}} @lang('analytics::google_translation.widgets.global.views.minute')
                         </span>
                     </div>
                 </div>
                 <div class="kt-widget12__item">
                     <div class="kt-widget12__info">
                         <span class="kt-widget12__desc">
-                            Nombre d'impression
+                            @lang('analytics::google_translation.widgets.global.views.number_printing')
                         </span>
                         <span class="kt-widget12__value">
                             {{$page_views}}
@@ -143,7 +135,7 @@
                     </div>
                     <div class="kt-widget12__info">
                         <span class="kt-widget12__desc">
-                            Utilisateur direct
+                            @lang('analytics::google_translation.widgets.global.views.direct_users')
                         </span>
                         <div class="kt-widget12__progress">
                             <div class="progress kt-progress--sm">
@@ -159,10 +151,7 @@
             </div>
             <div class="kt-widget12__chart" style="height:250px;">
                 <div class="chartjs-size-monitor">
-
-
                 </div>
-
                 <canvas id="canvas" width="739" height="250"></canvas>
             </div>
         </div>

@@ -17,8 +17,8 @@
                         label: 'Dataset'
                     }],
                     labels: [
-                        'Nouveaux visiteurs',
-                        'Visiteur de retour'
+                        "@lang('analytics::google_translation.widgets.user_types.views.new_visitor')",
+                        "@lang('analytics::google_translation.widgets.user_types.views.returning_visitor')"
                     ]
                 },
                 options: {
@@ -35,7 +35,7 @@
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Type d'utilisateur
+                @lang('analytics::google_translation.widgets.user_types.views.title')
             </h3>
         </div>
     </div>

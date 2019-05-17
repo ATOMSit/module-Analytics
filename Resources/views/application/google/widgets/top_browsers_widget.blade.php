@@ -2,7 +2,7 @@
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Top des navigateurs WEB
+                @lang('analytics::google_translation.widgets.top_browsers.views.title')
             </h3>
         </div>
     </div>
@@ -12,13 +12,21 @@
                 <div class="kt-widget4__item">
                     <div class="kt-widget4__pic kt-widget4__pic--logo">
                         @php
-                            $brower = $top_brower['browser']
+                            $brower = strtolower($top_brower['browser']);
                         @endphp
-                        <img src="{{asset("application/media/browers/$brower.png")}}" alt="">
+                        @if($brower === 'others')
+                            <img src="{{asset("application/media/browers/$brower.png")}}" alt="">
+                        @else
+                            <img src="{{asset("application/media/browers/$brower.png")}}" alt="">
+                        @endif
                     </div>
                     <div class="kt-widget4__info">
                         <a href="#" class="kt-widget4__title">
-                            {{$top_brower['browser']}}
+                            @if($brower === 'others')
+                                @lang('analytics::google_translation.widgets.top_browsers.views.others')
+                            @else
+                                {{$top_brower['browser']}}
+                            @endif
                         </a>
                     </div>
                     <span class="kt-widget4__number kt-font-brand">
