@@ -3,5 +3,5 @@
 // Home > Blog
 Breadcrumbs::for('analytics.admin.index', function ($trail) {
     $trail->parent('admin.home');
-    $trail->push('Audience de votre site', route('analytics.admin.index'));
+    $trail->push(trans('analytics::breadcrumb_translation.analytics.admin.index'), route('analytics.admin.index'));
 });

@@ -3,9 +3,10 @@
 namespace Modules\Analytics\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
+use Modules\Analytics\Database\Seeders\SystemDatabaseSeeder\AdvicesAnalyticsTableSeeder;
+use Modules\Analytics\Database\Seeders\SystemDatabaseSeeder\PluginsAnalyticsTableSeeder;
 
-class AnalyticsDatabaseSeeder extends Seeder
+class SystemAnalyticsDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,8 @@ class AnalyticsDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        $this->call(PluginsAnalyticsTableSeeder::class);
 
-        // $this->call("OthersTableSeeder");
+        $this->call(AdvicesAnalyticsTableSeeder::class);
     }
 }
