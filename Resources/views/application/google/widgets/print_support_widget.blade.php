@@ -19,9 +19,9 @@
                         label: 'Dataset 1'
                     }],
                     labels: [
-                        'Ordinateur',
-                        'Téléphone',
-                        'Tablette'
+                        "@lang('analytics::google_translation.widgets.print_support.views.desktop')",
+                        "@lang('analytics::google_translation.widgets.print_support.views.mobile')",
+                        "@lang('analytics::google_translation.widgets.print_support.views.tablet')"
                     ]
                 },
                 options: {
@@ -38,7 +38,7 @@
     <div class="kt-portlet__head">
         <div class="kt-portlet__head-label">
             <h3 class="kt-portlet__head-title">
-                Navigateurs internet favoris
+                @lang('analytics::google_translation.widgets.print_support.views.title')
             </h3>
         </div>
     </div>

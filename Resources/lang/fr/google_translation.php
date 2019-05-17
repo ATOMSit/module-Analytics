@@ -33,5 +33,13 @@ return [
                 'returning_visitor' => "Visiteurs de retour"
             ]
         ],
+        'print_support' => [
+            'views' => [
+                'title' => "Type d'affichage du site",
+                'desktop' => "Ordinateurs",
+                'mobile' => "Téléphones",
+                'tablet' => "Tablettes"
+            ]
+        ],
     ]
 ];
