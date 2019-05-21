@@ -41,6 +41,7 @@ class TopCountriesWidget extends AbstractWidget
         $topCountries = collect($response['rows'] ?? [])->map(function (array $browserRow) {
             return [
                 'name' => $browserRow[0],
+                'type' => 'country',
                 'iso' => (string)$browserRow[1],
                 'sessions' => (int)$browserRow[2],
             ];
@@ -64,8 +65,9 @@ class TopCountriesWidget extends AbstractWidget
             ->take($maxResults - 1)
             ->push([
                 'name' => 'Others',
-                'sessions' => $topCountries->splice($maxResults - 1)->sum('sessions'),
-                'iso' => null
+                'type' => 'country',
+                'iso' => null,
+                'sessions' => $topCountries->splice($maxResults - 1)->sum('sessions')
             ]);
     }
 
