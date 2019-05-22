@@ -11,10 +11,8 @@
             @foreach($datas as $data)
                 <div class="kt-widget4__item">
                     <div class="kt-widget4__pic kt-widget4__pic--logo">
-
-
                         @php
-                            $type = strtolower($data['type']);
+                            $type = strtolower($widget);
                         @endphp
                         @if($type === 'country')
                             @php
@@ -27,23 +25,30 @@
                             @endif
                         @elseif($type === 'browser')
                             @php
-                                $name = strtolower($top_brower['browser']);
+                                $name = strtolower($data['name']);
                             @endphp
                             @if($name === 'others')
                                 <img src="{{asset("application/media/browers/$name.png")}}" alt="">
                             @else
                                 <img src="{{asset("application/media/browers/$name.png")}}" alt="">
                             @endif
+                        @else
+                            @php
+                                $name = strtolower($data['name']);
+                            @endphp
+                            @if($name === 'others')
+                                <img src="{{asset("application/media/browers/$name.png")}}" alt="">
+                            @else
+                                <img src="{{asset("application/media/socials/$name.png")}}" alt="">
+                            @endif
                         @endif
-
-
                     </div>
 
 
                     <div class="kt-widget4__info">
                         <a href="#" class="kt-widget4__title">
                             @if($name === 'others')
-                                @lang('analytics::google_translation.widgets.top_browsers.views.others')
+                                @lang("analytics::google_translation.widgets.$type.views.others")
                             @else
                                 {{$data['name']}}
                             @endif

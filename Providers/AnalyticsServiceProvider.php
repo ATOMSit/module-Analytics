@@ -2,8 +2,10 @@
 
 namespace Modules\Analytics\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\Analytics\Http\Middleware\GenerateSidebarMenu;
 
 class AnalyticsServiceProvider extends ServiceProvider
 {
@@ -12,13 +14,19 @@ class AnalyticsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
         $this->registerTranslations();
+
         $this->registerConfig();
+
         $this->registerViews();
+
         $this->registerFactories();
+
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+        $router->pushMiddlewareToGroup('admin', GenerateSidebarMenu::class);
     }
 
     /**

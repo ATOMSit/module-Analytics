@@ -13,13 +13,13 @@ return [
                 'visitors' => "Visitors"
             ]
         ],
-        'top_socials_medias' => [
+        'socials_medias' => [
             'views' => [
                 'title' => "Social networks bringing the most traffic",
                 'others' => "Others"
             ]
         ],
-        'top_browsers' => [
+        'browser' => [
             'views' => [
                 'title' => "Favorite browsers of your visitors",
                 'others' => "Others"
@@ -41,7 +41,7 @@ return [
                 'tablet' => "Tablets"
             ]
         ],
-        'top_countries' => [
+        'country' => [
             'views' => [
                 'title' => "Origin of visitors",
                 'others' => "Others"

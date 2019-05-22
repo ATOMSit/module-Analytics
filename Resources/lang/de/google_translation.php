@@ -13,13 +13,13 @@ return [
                 'visitors' => "Besucher"
             ]
         ],
-        'top_socials_medias' => [
+        'socials_medias' => [
             'views' => [
                 'title' => "Soziale Netzwerke bringen den meisten Verkehr",
                 'others' => "Andere"
             ]
         ],
-        'top_browsers' => [
+        'browser' => [
             'views' => [
                 'title' => "Lieblingsbrowser für Ihre Besucher",
                 'others' => "Andere"
@@ -41,7 +41,7 @@ return [
                 'tablet' => "Tabletten"
             ]
         ],
-        'top_countries' => [
+        'country' => [
             'views' => [
                 'title' => "Herkunft der Besucher",
                 'others' => "Andere"

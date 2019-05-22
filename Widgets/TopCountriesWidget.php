@@ -6,6 +6,7 @@ namespace Modules\Analytics\Widgets;
 
 use Arrilot\Widgets\AbstractWidget;
 use Carbon\Carbon;
+use function GuzzleHttp\Psr7\str;
 use Illuminate\Support\Collection;
 use Spatie\Analytics\Period;
 use Analytics;
@@ -79,8 +80,9 @@ class TopCountriesWidget extends AbstractWidget
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
         $results = $this->fetchTopCountries($period, 5);
-        return view('analytics::application.google.widgets.top_countries_widget', [
-            'top_countries' => $results,
+        return view('analytics::application.google.widgets.table_widget', [
+            'widget' => (string)'country',
+            'datas' => $results,
             'config' => $this->config,
         ]);
     }

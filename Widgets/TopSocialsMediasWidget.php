@@ -81,8 +81,9 @@ class TopSocialsMediasWidget extends AbstractWidget
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
         $results = $this->fetchTopSocialsMedias($period, 4);
-        return view('analytics::application.google.widgets.top_socials_medias_widget', [
-            'top_socials' => $results,
+        return view('analytics::application.google.widgets.table_widget', [
+            'widget' => (string)'socials_medias',
+            'datas' => $results,
             'config' => $this->config,
         ]);
     }

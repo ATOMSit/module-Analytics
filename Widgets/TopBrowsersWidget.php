@@ -32,7 +32,7 @@ class TopBrowsersWidget extends AbstractWidget
             $period,
             'ga:sessions',
             [
-                'dimensions' => 'ga:browser,ga:countryIsoCode',
+                'dimensions' => 'ga:browser',
                 'sort' => '-ga:sessions',
             ]
         );
@@ -75,9 +75,9 @@ class TopBrowsersWidget extends AbstractWidget
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
         $results = $this->fetchTopBrowsers($period, 3);
-        return view('analytics::application.google.widgets.top_browsers_widget', [
-            'widget' => (string),
-            'top_browers' => $results,
+        return view('analytics::application.google.widgets.table_widget', [
+            'widget' => (string)'browser',
+            'datas' => $results,
             'config' => $this->config,
         ]);
     }
