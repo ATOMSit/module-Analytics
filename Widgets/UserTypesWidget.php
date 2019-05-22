@@ -34,7 +34,7 @@ class UserTypesWidget extends AbstractWidget
                 'dimensions' => 'ga:userType',
             ]
         );
-        $results = array('new_visitor' => array(), 'returning_visitor' => array());
+        $results = array('new_visitor' => 0, 'returning_visitor' => 0);
         foreach ($responses as $respons) {
             if ($respons[0] === 'New Visitor') {
                 $results['new_visitor'] = $respons[1];
@@ -42,7 +42,8 @@ class UserTypesWidget extends AbstractWidget
                 $results['returning_visitor'] = $respons[1];
             }
         }
-        return Collection::make($results);
+        $final = array($results['new_visitor'], $results['returning_visitor']);
+        return Collection::make($final);
     }
 
     /**
@@ -52,9 +53,15 @@ class UserTypesWidget extends AbstractWidget
     public function run()
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
-        $result = $this->userTypes($period);
-        return view('analytics::application.google.widgets.user_types_widget', [
-            'userType' => $result,
+        $results = $this->userTypes($period);
+        $labels = [trans('analytics::google_translation.widgets.user_types.views.new_visitor'), trans('analytics::google_translation.widgets.user_types.views.returning_visitor')];
+        $colors = ['#4286f4', '#59f442'];
+        return view('analytics::application.google.widgets.chart_pie', [
+            'widget' => (string)'user_types',
+            'id' => (int)random_int(100, 999),
+            'datas' => $results,
+            'labels' => $labels,
+            'colors' => $colors,
             'config' => $this->config,
         ]);
     }

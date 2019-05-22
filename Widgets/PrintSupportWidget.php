@@ -33,11 +33,12 @@ class PrintSupportWidget extends AbstractWidget
                 'dimensions' => 'ga:deviceCategory'
             ]
         );
-        $devices = ['desktop' => "0", 'mobile' => "0", 'tablet' => "0"];
+        $devices = ['desktop' => 0, 'mobile' => 0, 'tablet' => 0];
         foreach ($response as $item) {
             $devices[$item[0]] = $item[1];
         }
-        return Collection::make($devices);
+        $final = array($devices['desktop'], $devices['mobile'], $devices['tablet']);
+        return Collection::make($final);
     }
 
     /**
@@ -48,8 +49,15 @@ class PrintSupportWidget extends AbstractWidget
     {
         $period = Period::create(Carbon::today()->subWeek(), Carbon::today());
         $results = $this->deviceCategory($period);
-        return view('analytics::application.google.widgets.print_support_widget', [
-            'devices' => $results,
+
+        $labels = [trans('analytics::google_translation.widgets.print_support.views.desktop'), trans('analytics::google_translation.widgets.print_support.views.mobile'), trans('analytics::google_translation.widgets.print_support.views.tablet')];
+        $colors = ['#0099CC', '#feff00', '#6a151e'];
+        return view('analytics::application.google.widgets.chart_pie', [
+            'widget' => (string)'print_support',
+            'id' => (int)random_int(100, 999),
+            'datas' => $results,
+            'labels' => $labels,
+            'colors' => $colors,
             'config' => $this->config,
         ]);
     }
